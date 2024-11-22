@@ -1,12 +1,18 @@
 import { defineConfig } from 'vite';
-import react from '@vitejs/plugin-react';
-import { resolve } from 'path';
+import { VitePWA } from 'vite-plugin-pwa';
 
 export default defineConfig({
-  plugins: [react()],
-  resolve: {
-    alias: {
-      '@': resolve(__dirname, './src'),
-    },
-  },
+  plugins: [
+    VitePWA({
+      registerType: 'autoUpdate',
+      manifest: {
+        name: 'My Vite App',
+        short_name: 'ViteApp',
+        start_url: '/',
+        display: 'standalone',
+        background_color: '#ffffff',
+        theme_color: '#000000',
+      },
+    }),
+  ],
 });
